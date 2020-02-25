@@ -12,7 +12,7 @@ export default async (req: Request, res: Response) => {
     gender: Joi.number().integer(),
     comment: Joi.string(),
   });
-  if (!(validateBody(req, res, schema))) return;
+  if (!validateBody(req, res, schema)) return;
 
   const data = req.body;
 
