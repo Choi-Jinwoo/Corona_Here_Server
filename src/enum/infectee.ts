@@ -1,7 +1,7 @@
 export enum Gender {
   MAN,
   WOMAN,
-  UNKNOW,
+  UNKNOWN
 }
 
 export enum Type {
