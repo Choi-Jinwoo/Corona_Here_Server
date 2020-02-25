@@ -1,9 +1,6 @@
 import { Request, Response } from 'express';
-import Joi from 'joi';
-import validateBody from '../../../lib/validateBody';
 import { getRepository } from 'typeorm';
 import Infectee from '../../../entity/Infectee';
-import { Gender, Type } from '../../../enum/infectee';
 
 export default async (req: Request, res: Response) => {
   const idx = Number(req.params.idx);
