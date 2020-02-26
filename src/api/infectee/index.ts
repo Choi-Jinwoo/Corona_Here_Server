@@ -5,10 +5,12 @@ import getInfectee from './infectee.ctrl/getInfectee';
 import modifyInfectee from './infectee.ctrl/modifyInfectee';
 import deleteInfectee from './infectee.ctrl/deleteInfectee';
 import region from './region';
+import total from './total';
 
 const router = Router();
 
 router.use('/region', region);
+router.use('/total', total);
 
 router.post('/', auth, createInfectee);
 router.get('/', getInfectee);
