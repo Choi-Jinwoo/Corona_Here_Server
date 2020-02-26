@@ -10,6 +10,7 @@ export default async (req: Request, res: Response) => {
     confirmed: Joi.number().integer(),
     heal: Joi.number().integer(),
     death: Joi.number().integer(),
+    check: Joi.number().integer(),
   });
   if (!validateBody(req, res, schema)) return;
 
@@ -17,6 +18,7 @@ export default async (req: Request, res: Response) => {
     confirmed: number;
     heal: number;
     death: number;
+    check: number;
   };
 
   const data: RequestBody = req.body;
@@ -40,6 +42,13 @@ export default async (req: Request, res: Response) => {
     totalState.heal = data.confirmed;
   } else {
     totalState.last_heal = 0;
+  }
+
+  if (data.check) {
+    totalState.last_check = data.check - totalState.check;
+    totalState.check = data.check;
+  } else {
+    totalState.last_check = 0;
   }
   totalState.last_update = new Date().toString();
 
