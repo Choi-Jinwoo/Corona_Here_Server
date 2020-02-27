@@ -39,7 +39,7 @@ export default async (req: Request, res: Response) => {
 
   if (data.heal) {
     totalState.last_heal = data.heal - totalState.heal;
-    totalState.heal = data.confirmed;
+    totalState.heal = data.heal;
   } else {
     totalState.last_heal = 0;
   }
