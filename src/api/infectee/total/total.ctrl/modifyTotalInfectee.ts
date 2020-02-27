@@ -15,38 +15,38 @@ export default async (req: Request, res: Response) => {
   if (!validateBody(req, res, schema)) return;
 
   type RequestBody = {
-    confirmed: number;
-    heal: number;
-    death: number;
-    check: number;
+    confirmed: number | string
+    heal: number | string;
+    death: number | string;
+    check: number | string;
   };
 
   const data: RequestBody = req.body;
 
   if (data.confirmed) {
-    totalState.last_confirmed = data.confirmed - totalState.confirmed;
-    totalState.confirmed = data.confirmed;
+    totalState.last_confirmed = Number(data.confirmed) - totalState.confirmed;
+    totalState.confirmed = Number(data.confirmed);
   } else {
     totalState.last_confirmed = 0;
   }
 
   if (data.death) {
-    totalState.last_death = data.death - totalState.death;
-    totalState.death = data.death;
+    totalState.last_death = Number(data.death) - totalState.death;
+    totalState.death = Number(data.death);
   } else {
     totalState.last_death = 0;
   }
 
   if (data.heal) {
-    totalState.last_heal = data.heal - totalState.heal;
-    totalState.heal = data.heal;
+    totalState.last_heal = Number(data.heal) - totalState.heal;
+    totalState.heal = Number(data.heal);
   } else {
     totalState.last_heal = 0;
   }
 
   if (data.check) {
-    totalState.last_check = data.check - totalState.check;
-    totalState.check = data.check;
+    totalState.last_check = Number(data.check) - totalState.check;
+    totalState.check = Number(data.check);
   } else {
     totalState.last_check = 0;
   }
