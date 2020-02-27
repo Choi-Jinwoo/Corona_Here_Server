@@ -6,11 +6,13 @@ import modifyInfectee from './infectee.ctrl/modifyInfectee';
 import deleteInfectee from './infectee.ctrl/deleteInfectee';
 import region from './region';
 import total from './total';
+import date from './date';
 
 const router = Router();
 
 router.use('/region', region);
 router.use('/total', total);
+router.use('/date', date);
 
 router.post('/', auth, createInfectee);
 router.get('/', getInfectee);
