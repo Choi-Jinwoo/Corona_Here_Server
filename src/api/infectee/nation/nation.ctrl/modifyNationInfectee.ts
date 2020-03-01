@@ -33,7 +33,7 @@ export default async (req: Request, res: Response) => {
   const filePath = path.join(__dirname, '../../../../../data/nationalState.json');
   writeFile(filePath, strNationState, (err) => {
     if (err) {
-      console.log('국제 감염자 수정 서버 오류.', err.message);
+      console.log('국가별 감염자 수정 서버 오류.', err.message);
       res.status(500).json({
         message: '서버 오류.',
       });
