@@ -7,12 +7,14 @@ import deleteInfectee from './infectee.ctrl/deleteInfectee';
 import region from './region';
 import total from './total';
 import date from './date';
+import nation from './nation';
 
 const router = Router();
 
 router.use('/region', region);
 router.use('/total', total);
 router.use('/date', date);
+router.use('/nation', nation);
 
 router.post('/', auth, createInfectee);
 router.get('/', getInfectee);
