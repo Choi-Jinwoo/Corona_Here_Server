@@ -20,6 +20,7 @@ export default async (req: Request, res: Response) => {
 
     const posts: Post[] = await postRepo.find({
       select: [
+        'idx',
         'title',
         'region',
         'view',
