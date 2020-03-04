@@ -1,6 +1,7 @@
 config/
 dist/
 data/
+public/
 .env
 node_modules/
 yarn.lock

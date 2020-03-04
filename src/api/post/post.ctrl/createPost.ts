@@ -4,12 +4,14 @@ import validateBody from '../../../lib/validateBody';
 import { getRepository } from 'typeorm';
 import Region from '../../../enum/region';
 import Post from '../../../entity/Post';
+import PostFile from '../../../entity/PostFile';
 
 export default async (req: Request, res: Response) => {
   const schema = Joi.object().keys({
     title: Joi.string().required(),
     content: Joi.string().required(),
     region: Joi.number().integer(),
+    files: Joi.array().items(Joi.string()),
   });
   if (!validateBody(req, res, schema)) return;
 
@@ -24,6 +26,7 @@ export default async (req: Request, res: Response) => {
     title: string;
     content: string;
     region: number;
+    files: string[],
   }
   const data: RequestType = req.body;
 
@@ -34,7 +37,15 @@ export default async (req: Request, res: Response) => {
     post.content = data.content;
     post.region = data.region;
 
-    await postRepo.save(post);
+    const createdPost: Post = await postRepo.save(post);
+
+    const postFileRepo = getRepository(PostFile);
+    data.files.forEach(async (file: string) => {
+      const postFile = new PostFile();
+      postFile.name = file;
+      postFile.fk_post_idx = createdPost.idx;
+      await postFileRepo.save(postFile);
+    });
 
     res.status(200).json({
       message: '글 작성 성공.',

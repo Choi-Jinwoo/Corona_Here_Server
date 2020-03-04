@@ -3,18 +3,22 @@ import {
   Column,
   BaseEntity,
   PrimaryGeneratedColumn,
+  CreateDateColumn
 } from 'typeorm';
 
-@Entity('PostFile')
-export default class PostFile extends BaseEntity {
+@Entity('Comment')
+export default class Comment extends BaseEntity {
   @PrimaryGeneratedColumn()
   idx: number;
 
-  @Column({
-    length: 1024,
+  @Column('text', {
     nullable: false,
   })
-  name: string;
+  content: string;
+
+  @Column('timestampz')
+  @CreateDateColumn()
+  created_at: Date;
 
   @Column({
     nullable: false
