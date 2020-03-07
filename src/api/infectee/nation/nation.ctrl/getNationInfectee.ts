@@ -7,8 +7,8 @@ export default async (req: Request, res: Response) => {
   const nationDataKey = Object.keys(nationData);
   nationDataKey.forEach((key) => {
     result.push({
-      nation: key,
-      number: nationData[key],
+      nation: Number(key),
+      number: Number(nationData[key]),
     });
   })
   res.status(200).json({

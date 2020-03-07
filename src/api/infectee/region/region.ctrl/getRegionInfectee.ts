@@ -5,7 +5,7 @@ import Region from '../../../../enum/region';
 export default async (req: Request, res: Response) => {
   const region: number = Number(req.query.region);
 
-  let regionData = regionState;
+  let regionData: Object | Number = regionState;
 
   if (region) {
     if (!(region in Region)) {
@@ -15,7 +15,11 @@ export default async (req: Request, res: Response) => {
       return;
     }
 
-    regionData = regionState[region];
+    regionData = Number(regionState[region]);
+  } else {
+    Object.keys(regionData).map((key) => {
+      return Number(regionData[key]);
+    });
   }
 
   res.status(200).json({
