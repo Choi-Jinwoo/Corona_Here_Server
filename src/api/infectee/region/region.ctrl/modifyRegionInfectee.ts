@@ -27,7 +27,7 @@ export default async (req: Request, res: Response) => {
     return;
   };
 
-  regionState[data.region] = data.number;
+  regionState[data.region] = Number(data.number);
 
   const strRegionState = JSON.stringify(regionState);
   const filePath = path.join(__dirname, '../../../../../data/regionState.json');
