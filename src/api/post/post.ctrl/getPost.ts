@@ -43,6 +43,10 @@ export default async (req: Request, res: Response) => {
     postFiles.forEach(postFiles => {
       resultPost.files.push(generateURL(req, postFiles.name));
     })
+
+    post.view += 1;
+    await postRepo.save(post);
+
     res.status(200).json({
       message: '글 조회 성공.',
       data: {
